@@ -1,0 +1,2 @@
+pip install aliyun-python-sdk-cdn
+pip install oss2

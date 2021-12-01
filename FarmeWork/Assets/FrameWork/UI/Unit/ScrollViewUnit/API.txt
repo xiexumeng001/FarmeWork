@@ -1,0 +1,43 @@
+ScrollViewHandle	无限滚动脚本
+	Public
+		方法
+			Init 初始化,设置基本信息
+			Show 展示数据
+					有两个重载,一个是指定开始展示的Index,一个是设置是否保持当前滑动位置不变
+
+			ScrollToIndex 滑动到某个下标
+			ScrollToPosition 滑动到指定位置
+			GetHandleItem 通过数据获取对应展示的Item
+
+	Private
+		方法
+			RefreshAll 全部刷新,会把当前展示的全部关闭,在全部打开,然后更新到对应位置
+			UpdateShow 更新展示
+
+ScrollViewHandlerItem 无限滚动的格子脚本
+	Public:
+		属性:
+			Index 对应数据在List的下标
+		方法:
+
+	Protect:
+		重写:
+			OnFirstEnter 当首次进入
+			OnShow 当展示
+			OnClose 当关闭
+			GetTransDragEventGame
+				获取需要传递拖拽物体的集合
+				如果无限滚动的格子添加了触发事件,那么就会阻挡拖拽ScrollView的拖拽事件,导致ScrollView无法拖拽
+				所以需要统计添加事件的节点,当此节点接收到拖拽时间时,就传递给ScrollView
+
+ScrollViewHandleAdaptInfo 适配信息,让无线滚动脚本适配不同分辨率
+	主要是根据Mask的宽高适配
+	Public:
+		属性:
+			Type 适配类型
+		方法：
+			Adapter 适配
+
+
+ScrollViewHandleInspectorShow 无线滚动的编辑器扩展脚本
+	选择不同的适配类型,展示不同的选项

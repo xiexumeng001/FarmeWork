@@ -1,0 +1,42 @@
+Editor目录
+	BuildAB目录
+		里面是打AB包的逻辑
+
+	AutoBuild目录
+		自动打包工具
+		AutoBuild.cs 自动设置参数然后打APK包
+			cmd调用AutoBuild的逻辑
+		AutoOss.cs 比较本地与服务器上的ab包差别
+			通过oss提供的python自动化代码上传至oss,并且刷新预热cdn
+
+	PackagerRedundancyCheck.cs
+		AB包重复依赖的检测工具,能检测到大部分重复依赖
+		有些情况检测不出来,比如:
+			1、材质打包,依赖的图片可能存在两份,但是检测不到
+			2、图集打包,一个图集的两张图片打进不同AB包,那么图集就会存在两份,也检测不到
+			这些都是默认进了AB包里面的资源,在.manifest并没有记录,所以检测不到
+
+
+ResHotUpdate 目录
+	热更逻辑目录
+	ResourcesChecker 热更主脚本,Do()开启了热更流程
+	ServerResConfig 配置是否开启热更等等,会从服务器获取到热更配置
+	UpdateAbLine
+		热更流程基类
+		UpdateAbLine_StreamingToPersistent Streaming路径到沙盒路径的热更流程
+		UpdateAbLine_ServerToPersistent 服务器到沙盒路径的热更流程
+
+
+ResMgr 目录
+	资源加载与卸载的逻辑
+	ResourceManager 资源管理器,里面提供了加载资源与卸载资源的所有接口
+		AssetBundleInfoNode AB包信息类,一个AB包对应一个此对象
+		AssetClone 实例化物体类,每实例化一个预制体,就生成一个此对象
+		CloneanbleAssetNode 可实例化的节点,里面包含预制体资源,当加载该预制体时,如果存在可实例化节点,那么使用此节点直接实例化预制体
+
+	ResourceSafe 资源泄露检测,检测资源是否未释放
+
+ResDefine.cs
+	资源定义类,定义了一些不需要改动的变量与方法
+ResourceConfig
+	资源配置类,定义了一些需要变动的变量

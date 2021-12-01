@@ -1,0 +1,42 @@
+[
+  {
+    "CheckLogic": "CheckReferenced",
+    "ConfigName": "Room",
+    "KeyName": "Id",
+    "AttriName": "AmmoID",
+    "IgronNum": "0",
+    "ReferencedConfigName": "Ammo",
+    "ReferencedConfigIdAttribuName": "Id",
+    "PrefabsPath": ""
+  },
+  {
+    "CheckLogic": "CheckPrefabs",
+    "ConfigName": "Room",
+    "KeyName": "Id",
+    "AttriName": "ResName",
+    "IgronNum": "",
+    "ReferencedConfigName": "",
+    "ReferencedConfigIdAttribuName": "",
+    "PrefabsPath": "Assets\\StarShip\\Res\\default\\Prefabs\\Room"
+  },
+  {
+    "CheckLogic": "CheckShipOrnal",
+    "ConfigName": "Ship",
+    "KeyName": "Id",
+    "AttriName": "InResName",
+    "IgronNum": "",
+    "ReferencedConfigName": "",
+    "ReferencedConfigIdAttribuName": "",
+    "PrefabsPath": "Assets\\StarShip\\Res\\default\\Prefabs\\Ship"
+  },
+  {
+    "CheckLogic": "CheckShipOrnal",
+    "ConfigName": "Ship",
+    "KeyName": "Id",
+    "AttriName": "OverturnInResName",
+    "IgronNum": "",
+    "ReferencedConfigName": "",
+    "ReferencedConfigIdAttribuName": "",
+    "PrefabsPath": "Assets\\StarShip\\Res\\default\\Prefabs\\Ship"
+  }
+]

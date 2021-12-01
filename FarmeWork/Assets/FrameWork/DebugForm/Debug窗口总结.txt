@@ -1,0 +1,54 @@
+
+三个文件夹
+	Component里面是调试功能的组件类
+		DebuggerComponent 是展示调试窗口的组件
+		主要是注册展示窗口道DebugManager中,并且控制对DebugManager注册窗口的展示,带着FPS的计算
+
+		m_DebuggerManager 是窗口管理器
+
+		FpsCounter 是计算帧率的类，构造函数传入 间隔时间，目前是0.5秒,每0.5秒计算一次帧数与实际的秒数的比值,就是帧率
+	Base是整个调试功能的底层逻辑
+		IDebuggerManager：
+			调试窗口管理类的接口
+		DebuggerManager:
+			调试窗口管理类
+			主要是管理根窗口组（m_DebuggerWindowRoot变量）
+			Update（更新）、Shutdown（关闭）、RegisterDebuggerWindow（注册）、GetDebuggerWindow（获取）、SelectDebuggerWindow（选中）
+
+		IDebuggerWindow
+			调试窗口的接口
+		IDebuggerWindowGroup
+			调试窗口组的接口，继承自IDebuggerWindow，所以组本身也是一个窗口
+		DebuggerWindowGroup
+			调试窗口组的类
+			主要是管理这个组里面的各个窗口（m_DebuggerWindows记录着组里所有的窗口,键是窗口名称,值是窗口对象）
+			Initialize（初始化，在注册窗口的时候执行）、Shutdown（关闭组）、OnEnter（当进入，选中时候执行）、OnLeave（当离开，取消选中时候执行）、OnUpdate（更新）、OnDraw（绘制）、
+			RefreshDebuggerWindowNames（刷新管理的窗口记录）、GetDebuggerWindowNames（获取窗口记录）、GetDebuggerWindow（获取某个窗口）、
+			SelectDebuggerWindow（选中窗口）、RegisterDebuggerWindow（注册窗口）、
+			InternalGetDebuggerWindow（获取窗口）、InternalSelectDebuggerWindow（选中窗口）
+
+	Extend里是各个扩展出来的各个具体窗口
+		ConsoleWindow 是输出窗口,主要是管理着一个输出队列，并且控制此队列的展示
+
+
+总结：
+	DebuggerComponent 组件类主要激活调试功能,并注册需要调试的功能,然后绘制调试窗口
+	DebuggerManager 主要就是管理着根调试组的界面
+	DebuggerWindowGroup 调试组管理着调试窗口,组本身也是个窗口
+	IDebuggerWindow 调试窗口，自己管自己的逻辑与具体的绘制细节
+
+使用:
+	挂载上DebuggerComponent组件即可
+
+
+一些GUI的用法:
+	bool GUILayout.Toggle（bool value, string text, params GUILayoutOption[] options）
+		选择开关按钮，value:展示开还是关,text展示文字，options一些额外的参数，返回当前的开关状态
+
+	GUILayout.BeginHorizontal(); 开始横向排列
+	GUILayout.EndHorizontal();  结束横向排列
+
+	GUILayout.BeginVertical("box"); 开始垂直组，样式是盒子样式
+	GUILayout.EndVertical();  结束垂直组
+
+	GUILayout.FlexibleSpace(); 插入一个空格元素

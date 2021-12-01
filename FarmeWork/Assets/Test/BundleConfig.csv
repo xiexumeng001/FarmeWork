@@ -1,0 +1,5 @@
+Type,Path,Suffix
+SINGLEFOLDER,Atlas/KuangBg,*.*
+FOLDER,Atlas/Bg,*.*
+ONLYFOLDER,Atlas/topBg,*.*
+SINGLE,Prefabs,*.prefab

@@ -1,0 +1,9 @@
+https://www.jianshu.com/p/d0e3ba9fa334
+https://blog.csdn.net/ljb568838953/article/details/107663291
+
+
+可以接入Bugly或者友盟
+注意:
+	1、同时接入Bugly与友盟的异常捕获Jar包,可能会导致闪退,要是确定接Bugly,那就把友盟的异常捕获Jar包去掉
+	2、如果接入Bugly的U3D版本插件,那么直接从unitypackage包中导入资源之后,再把Demo中的Jar包替换过来
+		unitypackage包中的Jar包有问题,会导致闪退

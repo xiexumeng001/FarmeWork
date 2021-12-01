@@ -1,0 +1,88 @@
+基础:
+	UIManager
+		UI管理类,管理页面信息,展示、关闭页面,管理页面层级
+		Public
+			属性:
+				UICamera UI摄像机
+				RootCanvas 根Canvas
+
+			方法:
+				ShowUIForms 展示界面
+				CloseUIForm 关闭界面
+				CloseAllForm 关闭所有界面(常驻界面只关闭,不删除)
+				GetUIForm 获取界面
+
+	BaseUIForm
+		UI界面基类,设置界面层级,重写生命周期函数
+		Public:
+			属性:
+				UIKey 界面键值
+				IsUsing 界面是否正在使用中
+				LayerNum 界面层级
+
+			方法：
+				AddCloseAction 添加关闭回调
+				RemoveCloseAction 移除关闭回调
+		Protect:
+			重写方法:
+				OnFirstEnter 
+					首次进入界面函数,主要可以做一个初始化之类的操作,比如添加触发事件等
+					界面刚生成第一次打开,会调用这个
+				StartShow
+					开始展示函数
+					每次展示界面都会调用这个
+				OnClose
+					当界面关闭
+				OnLayerChange
+					当层级改变
+
+	UIInfo
+		界面信息类
+		设定UI界面的资源,脚本,层级,遮罩类型
+
+	UIMask
+		遮罩类,控制遮罩的展示逻辑
+
+	UIDepth
+		层级类,控制层级显示
+
+单位类:
+	DragUI
+		ui拖拽组件,挂载在对应UI上即可直接拖拽
+
+	EventTriggerListener
+		ui手势触发组件
+		可直接挂载在任意UI物体,选择要触发的手势类型与对应的回调函数即可
+		也可用代码添加触发回调
+
+	UIHelper
+		一些UI常用的公共方法
+		ShowNoUIGame 在UI界面上展示非UI物体的接口
+		ClampPositionInCanvas 把ui限制在屏幕范围内，保证ui完全显示
+		TranScrollEvent 传递Scorll拖拽事件,防止ScrollView上面的物体挡住滑动效果
+
+	UIQueue
+		UI队列类
+		UI队列,上一个展示完了再展示下一个
+
+	无限滚动插件
+		详情可看无限滚动的API与总结
+
+扩展类:
+	UIResLoad
+		UI资源类
+		里面写加载资源与卸载资源的逻辑,各自扩展各自的资源管理机制
+
+	UISound
+		UI音效类
+		扩展播放音效的逻辑
+
+	XLua
+		XLuaBaseUIForm XLua界面基类(全注释了,可以参考)
+
+	ToLua
+
+编辑器扩展类:
+	CreateUI
+		重写创建UI元素的方法
+		主要是为了去掉RayCastTarget的默认勾选,减少性能开销
